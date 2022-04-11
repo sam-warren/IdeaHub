@@ -1,3 +1,6 @@
-# IDEAS 
+# DM Tools 
 
-Yuh
+Tools for DMs
+
+## Running the code
+```cd src && npm install && npm start```
