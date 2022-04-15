@@ -12,4 +12,12 @@ describe('useSubracesApi', () => {
   afterEach(() => {
     mock.restore();
   });
+
+  it('getSubraces works as expected', async () => {});
+
+  it('getSubraceByIndex works as expected', async () => {});
+
+  it('getProficienciesForSubrace works as expected', async () => {});
+
+  it('getTraitsForSubrace works as expected', async () => {});
 });

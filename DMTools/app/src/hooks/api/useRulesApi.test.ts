@@ -12,4 +12,12 @@ describe('useRulesApi', () => {
   afterEach(() => {
     mock.restore();
   });
+
+  it('getRuleSections works as expected', async () => {});
+
+  it('getRuleSectionByIndex works as expected', async () => {});
+
+  it('getRules works as expected', async () => {});
+
+  it('getRuleByIndex works as expected', async () => {});
 });

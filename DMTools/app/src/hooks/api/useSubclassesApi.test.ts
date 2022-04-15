@@ -12,4 +12,16 @@ describe('useSubclassesApi', () => {
   afterEach(() => {
     mock.restore();
   });
+
+  it('getSubclasses works as expected', async () => {});
+
+  it('getSubclassByIndex works as expected', async () => {});
+
+  it('getSubclassFeaturesByIndex works as expected', async () => {});
+
+  it('getSubclassLevelsByIndex works as expected', async () => {});
+
+  it('getSubclassLevelByIndexAndLevel works as expected', async () => {});
+
+  it('getSubclassLevelFeaturesByIndexAndLevel works as expected', async () => {});
 });

@@ -12,4 +12,14 @@ describe('useRacesApi', () => {
   afterEach(() => {
     mock.restore();
   });
+
+  it('getRaces works as expected', async () => {});
+
+  it('getRaceByIndex works as expected', async () => {});
+
+  it('getSubracesForRace works as expected', async () => {});
+
+  it('getProficienciesForRace works as expected', async () => {});
+
+  it('getTraitsForRace works as expected', async () => {});
 });

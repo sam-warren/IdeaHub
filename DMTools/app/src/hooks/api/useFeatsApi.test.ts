@@ -12,4 +12,8 @@ describe('useFeatsApi', () => {
   afterEach(() => {
     mock.restore();
   });
+
+  it('getFeats works as expected', async () => {});
+
+  it('getFeatByIndex works as expected', async () => {});
 });

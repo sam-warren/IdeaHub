@@ -12,4 +12,16 @@ describe('useGameMechanicsApi', () => {
   afterEach(() => {
     mock.restore();
   });
+
+  it('getConditions works as expected', async () => {});
+
+  it('getConditionByIndex works as expected', async () => {});
+
+  it('getDamageTypes works as expected', async () => {});
+
+  it('getDamageTypeByIndex works as expected', async () => {});
+
+  it('getMagicSchools works as expected', async () => {});
+
+  it('getMagicSchoolByIndex works as expected', async () => {});
 });

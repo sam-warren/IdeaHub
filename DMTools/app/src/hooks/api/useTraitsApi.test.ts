@@ -12,4 +12,8 @@ describe('useTraitsApi', () => {
   afterEach(() => {
     mock.restore();
   });
+
+  it('getTraits works as expected', async () => {});
+
+  it('getTraitByIndex works as expected', async () => {});
 });

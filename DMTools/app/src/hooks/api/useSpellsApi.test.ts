@@ -12,4 +12,10 @@ describe('useSpellsApi', () => {
   afterEach(() => {
     mock.restore();
   });
+
+  it('getSpells works as expected', async () => {});
+
+  it('getSpellByIndex works as expected', async () => {});
+
+  it('getSpellBySchool works as expected', async () => {});
 });

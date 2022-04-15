@@ -12,4 +12,10 @@ describe('useMonstersApi', () => {
   afterEach(() => {
     mock.restore();
   });
+
+  it('getMonsters works as expected', async () => {});
+
+  it('getMonsterByChallengeRating works as expected', async () => {});
+
+  it('getMonsterByIndex works as expected', async () => {});
 });
