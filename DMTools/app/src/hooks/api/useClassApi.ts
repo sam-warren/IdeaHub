@@ -55,7 +55,7 @@ const useClassApi = (axios: AxiosInstance) => {
    * getClassMulticlassingByIndex('barbarian');
    */
   const getClassMulticlassingByIndex = async (index: string): Promise<iMulticlass> => {
-    const { data } = await axios.get(`/api/classes/${index}/multiclassing`);
+    const { data } = await axios.get(`/api/classes/${index}/multi-classing`);
     return data;
   };
 
@@ -69,7 +69,7 @@ const useClassApi = (axios: AxiosInstance) => {
    * getClassSubclassesByIndex('barbarian');
    */
   const getClassSubclassesByIndex = async (index: string): Promise<iAPIReferenceList> => {
-    const { data } = await axios.get(`/api/classes/${index}/subclass`);
+    const { data } = await axios.get(`/api/classes/${index}/subclasses`);
     return data;
   };
 
