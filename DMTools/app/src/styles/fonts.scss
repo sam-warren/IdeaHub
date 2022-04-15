@@ -1,0 +1,47 @@
+@font-face {
+  font-family: 'DndDonjonIkon';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/fonts/donjonikons-30607/DonjonikonsRegular-VABy.ttf') format('truetype'),
+    /* Optimized for very modern browsers */ //TODO
+    local('DndDonjon'); /* Modern Browsers */
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Draconis';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/fonts/draconis-54786/Draconis-JRw6B.ttf') format('truetype'),
+    /* Optimized for very modern browsers */ //TODO
+    local('Draconis'); /* Modern Browsers */
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Draconis';
+  font-style: italic;
+  src: url('../assets/fonts/draconis-54786/DraconisItalic-VGdjy.ttf') format('truetype'),
+    /* Optimized for very modern browsers */ //TODO
+    local('Draconis'); /* Modern Browsers */
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Draconis';
+  font-weight: 700;
+  src: url('../assets/fonts/draconis-54786/DraconisBold-qZxd6.ttf') format('truetype'),
+    /* Optimized for very modern browsers */ //TODO
+    local('Draconis'); /* Modern Browsers */
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Draconis';
+  font-style: italic;
+  font-weight: 700;
+  src: url('../assets/fonts/draconis-54786/DraconisBoldItalic-AL8O6.ttf') format('truetype'),
+    /* Optimized for very modern browsers */ //TODO
+    local('Draconis'); /* Modern Browsers */
+  font-display: swap;
+}
+
+$fontFamily: 'Draconis', 'DndDonjonIkon', Verdana, Arial, sans-serif;

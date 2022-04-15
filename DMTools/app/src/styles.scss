@@ -1,0 +1,12 @@
+@import 'styles/fonts.scss';
+
+fieldset {
+  border: none;
+  padding: 0;
+  min-width: 0;
+}
+
+legend.MuiTypography-root {
+  margin-bottom: 1rem;
+  font-weight: 700;
+}

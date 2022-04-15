@@ -1,12 +1,11 @@
-import { AppBar, Button, Theme, Toolbar } from '@mui/material';
+import { AppBar, Avatar, Button, ButtonGroup, Grid, Theme, Toolbar } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { Box } from '@mui/system';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) => ({
   head: {
-    color: 'blue'
+    height: '100%'
   }
 }));
 
@@ -15,25 +14,28 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <AppBar position="sticky" style={{ boxShadow: 'none' }}>
-        <Toolbar className={classes.head}>
-          <Box>
-            <Link to="/">
-              <Button color="secondary" variant="contained">
-                Home
-              </Button>
-            </Link>
-            <Link to="/init">
-              <Button color="secondary" variant="contained">
-                Initiative Tracker
-              </Button>
-            </Link>
-            <Link to="/rep">
-              <Button color="secondary" variant="contained">
-                Reputation Tracker
-              </Button>
-            </Link>
-          </Box>
+      <AppBar position="sticky" style={{ boxShadow: 'inherit' }}>
+        <Toolbar>
+          <Avatar alt="Logo" src="/assets/dnd-icon-13.jpg" sx={{ width: 80, height: 80 }} />
+          <Grid className={classes.head} container direction={'row'}>
+            <ButtonGroup color="secondary" variant="contained" aria-label="outlined primary button group">
+              <Grid item>
+                <Link to="/">
+                  <Button>Home</Button>
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link to="/init">
+                  <Button>Initiative Tracker</Button>
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link to="/rep">
+                  <Button>Reputation Tracker</Button>
+                </Link>
+              </Grid>
+            </ButtonGroup>
+          </Grid>
         </Toolbar>
       </AppBar>
     </>
