@@ -5,7 +5,7 @@ import { iClass } from '../../interfaces/Class/iClass';
 import { iClassSpellcasting } from '../../interfaces/Class/iClassSpellcasting';
 import { iMulticlass } from '../../interfaces/Class/iMulticlass';
 import { iClassLevel } from '../../interfaces/ClassLevels/iClassLevel';
-
+import { characterLevelValidator, spellLevelValidator } from './utils/apiUtils';
 
 const useClassApi = (axios: AxiosInstance) => {
   /* ========== Class Info ========== */
@@ -158,6 +158,9 @@ const useClassApi = (axios: AxiosInstance) => {
    * getClassLevelFeaturesByIndexAndLevel('barbarian', 1);
    */
   const getClassLevelFeaturesByIndexAndLevel = async (index: string, level: number): Promise<iAPIReferenceList> => {
+    if (!characterLevelValidator) {
+      throw new Error('Level must be between 1 and 20');
+    }
     const { data } = await axios.get(`/api/classes/${index}/levels/${level}/features`);
     return data;
   };
@@ -171,6 +174,9 @@ const useClassApi = (axios: AxiosInstance) => {
    * getClassLevelSpellsByIndexAndLevel('barbarian', 1);
    */
   const getClassLevelSpellsByIndexAndLevel = async (index: string, spell_level: number): Promise<iAPIReferenceList> => {
+    if (!spellLevelValidator) {
+      throw new Error('Spell level must be between 1 and 9');
+    }
     const { data } = await axios.get(`/api/classes/${index}/levels/${spell_level}/spells`);
     return data;
   };

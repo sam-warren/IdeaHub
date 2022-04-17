@@ -1,6 +1,7 @@
 import { AxiosInstance } from 'axios';
 import { iAPIReferenceList } from '../../interfaces/Common/iAPIReferenceList';
 import { iMonster } from '../../interfaces/Monsters/iMonster';
+import { challengeRatingValidator } from './utils/apiUtils';
 
 const useMonstersApi = (axios: AxiosInstance) => {
   /* ========== Feats ========== */
@@ -23,7 +24,10 @@ const useMonstersApi = (axios: AxiosInstance) => {
    * @example
    * getMonstersByChallengeRating(1);
    */
-  const getMonstersByChallengeRating = async (challenge_rating: number): Promise<iAPIReferenceList> => {
+  const getMonstersByChallengeRating = async (challenge_rating: number | number[]): Promise<iAPIReferenceList> => {
+    if (!challengeRatingValidator(challenge_rating)) {
+      throw new Error('Challenge rating must be a number or array of numbers including: 0, 0.125, 0.25, 0.5 and 1-30');
+    }
     const { data } = await axios.get(`/api/monsters?challenge_rating=${challenge_rating}`);
     return data;
   };

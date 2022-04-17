@@ -66,7 +66,7 @@ describe('useSpellsApi', () => {
     expect(result).toEqual(response);
   });
 
-  it('getSpellBySchool works as expected', async () => {
+  it('getSpellsBySchool works as expected', async () => {
     const response = {
       count: 39,
       results: [
@@ -85,7 +85,57 @@ describe('useSpellsApi', () => {
 
     mock.onGet('/api/spells?school=abjuration').reply(200, response);
 
-    const result = await useSpellsApi(axios).getSpellsBySchool(MagicSchool.Abjuration);
+    const result = await useSpellsApi(axios).getSpellsBySchool([MagicSchool.Abjuration]);
+    expect(result).toEqual(response);
+  });
+
+  it('getSpellsByLevel works as expected', async () => {
+    const response = {
+      count: 2,
+      results: [
+        {
+          index: 'aid',
+          name: 'Aid',
+          url: '/api/spells/aid'
+        },
+        {
+          index: 'alarm',
+          name: 'Alarm',
+          url: '/api/spells/alarm'
+        }
+      ]
+    };
+
+    mock.onGet('/api/spells?level=2').reply(200, response);
+
+    const result = await useSpellsApi(axios).getSpellsByLevel(2);
+    expect(result).toEqual(response);
+  });
+
+  it('getSpellsByLevelAndSchool works as expected', async () => {
+    const response = {
+      count: 2,
+      results: [
+        {
+          index: 'aid',
+          name: 'Aid',
+          url: '/api/spells/aid'
+        },
+        {
+          index: 'alarm',
+          name: 'Alarm',
+
+          url: '/api/spells/alarm'
+        }
+      ]
+    };
+
+    mock.onGet('/api/spells?level=2,3&school=abjuration,conjuration').reply(200, response);
+
+    const result = await useSpellsApi(axios).getSpellsByLevelAndSchool(
+      [2, 3],
+      [MagicSchool.Abjuration, MagicSchool.Conjuration]
+    );
     expect(result).toEqual(response);
   });
 });

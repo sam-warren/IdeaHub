@@ -2,6 +2,7 @@ import { AxiosInstance } from 'axios';
 import { iAPIReferenceList } from '../../interfaces/Common/iAPIReferenceList';
 import { iSubclass } from '../../interfaces/Subclasses/iSubclass';
 import { iSubclassLevel } from '../../interfaces/Subclasses/iSubclassLevels';
+import { characterLevelValidator } from './utils/apiUtils';
 
 const useSubclassesApi = (axios: AxiosInstance) => {
   /* ========== Subclasses ========== */
@@ -62,6 +63,9 @@ const useSubclassesApi = (axios: AxiosInstance) => {
    * getSubclassLevelByIndexAndLevel('berserker', 1);
    */
   const getSubclassLevelByIndexAndLevel = async (index: string, subclass_level: number): Promise<iSubclassLevel> => {
+    if (!characterLevelValidator(subclass_level)) {
+      throw new Error('Subclass level should be between 1 and 20');
+    }
     const { data } = await axios.get(`/api/subclasses/${index}/levels/${subclass_level}`);
     return data;
   };
@@ -78,6 +82,9 @@ const useSubclassesApi = (axios: AxiosInstance) => {
     index: string,
     subclass_level: number
   ): Promise<iAPIReferenceList> => {
+    if (!characterLevelValidator(subclass_level)) {
+      throw new Error('Subclass level should be between 1 and 20');
+    }
     const { data } = await axios.get(`/api/subclasses/${index}/levels/${subclass_level}/features`);
     return data;
   };
