@@ -1,6 +1,6 @@
-import { Rule } from 'ajv/dist/compile/rules';
 import { AxiosInstance } from 'axios';
 import { RuleSection } from '../../constants/RuleSection';
+import { Rule } from '../../constants/Rule';
 import { iAPIReferenceList } from '../../interfaces/Common/iAPIReferenceList';
 import { iRuleSection } from '../../interfaces/Rules/iRuleSection';
 
@@ -23,7 +23,7 @@ const useRulesApi = (axios: AxiosInstance) => {
    * @param {index} RuleSection
    * @returns {*} {Promise<iRuleSection>}
    * @example
-   * getRuleSectionByIndex('movement');
+   * getRuleSectionByIndex(RuleSection.Cover);
    */
   const getRuleSectionByIndex = async (index: RuleSection): Promise<iRuleSection> => {
     const { data } = await axios.get(`/api/rule-sections/${index}`);
@@ -48,7 +48,7 @@ const useRulesApi = (axios: AxiosInstance) => {
    * @param {index} Rule
    * @returns {*} {Promise<iRule>}
    * @example
-   * getRuleByIndex('spellcasting');
+   * getRuleByIndex(Rule.Cover);
    */
   const getRuleByIndex = async (index: Rule): Promise<iRuleSection> => {
     const { data } = await axios.get(`/api/rules/${index}`);
