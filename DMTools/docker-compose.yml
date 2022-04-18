@@ -2,29 +2,57 @@ version: '3.8'
 
 services:
   db:
+    container_name: ${DOCKER_PROJECT_NAME}-db-${DOCKER_NAMESPACE}-container
     build: ./db
     ports:
-      - "27017:27017"
+      - "${DB_PORT}:${DB_PORT}"
+    environment:
+      DB_PORT: ${DB_PORT}
 
   cache:
     image: redis:6.2.5
     ports:
-      - "6379:6379"
+      - "${CACHE_PORT}:${CACHE_PORT}"
 
   api:
+    container_name: ${DOCKER_PROJECT_NAME}-api-${DOCKER_NAMESPACE}-container
     environment:
-      MONGODB_URI: mongodb://db/5e-database
-      REDIS_URL: redis://cache:6379
+      MONGODB_URI: ${MONGODB_URI}
+      REDIS_URL: ${REDIS_URL}
+      API_HOST: ${API_HOST}
+      API_PORT: ${API_PORT}
+      API_TZ: ${API_TZ}
     build: ./api
     ports:
-      - '3000:3000'
+      - '${API_PORT}:${API_PORT}'
+    volumes:
+    - ./api:/opt/app-root/src
+    - /opt/app-root/src/node_modules # prevents local node_modules overriding container node_modules
+    networks:
+      - local-network
     depends_on:
       - db
       - cache
   
   app:
+    container_name: ${DOCKER_PROJECT_NAME}-app-${DOCKER_NAMESPACE}-container
     build: ./app
     ports:
-      - '8000:8000'
+      - '${APP_PORT}:${APP_PORT}'
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - REACT_APP_NODE_ENV=${NODE_ENV}
+      - PORT=${APP_PORT}
+      - REACT_APP_API_HOST=http://${API_HOST}
+      - REACT_APP_API_PORT=${API_PORT}
+      - REACT_APP_MAX_UPLOAD_NUM_FILES=${MAX_UPLOAD_NUM_FILES}
+      - REACT_APP_MAX_UPLOAD_FILE_SIZE=${MAX_UPLOAD_FILE_SIZE}
+    volumes:
+      - ./app:/opt/app-root/src
+      - /opt/app-root/src/node_modules # prevents local node_modules overriding container node_modules
     depends_on:
       - api
+
+networks:
+  local-network:
+    driver: bridge
