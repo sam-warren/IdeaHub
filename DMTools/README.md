@@ -13,14 +13,16 @@ A project to facilitate great Dungeons and Dragons. Complies with SRD.
 3. In the DMTools directory, `make setup`
 4. Install `node_modules` for all projects using `make install`
 
-## Running the app
+## Running the project
 
 In the DMTools directory:
 
-- Database only: `make build-db run-db`
-- API only: `make build-api run-api`
-- App only: `make build-app run-app`
-- All: `make build-all run-all`
+- Database only: `make db`
+- API only: `make api`
+- App only: `make app`
+- All: `make all`
+
+More options are available in `Makefile`.
 
 ## Logging
 

@@ -16,7 +16,9 @@ const Header: React.FC = () => {
     <>
       <AppBar position="sticky" style={{ boxShadow: 'inherit' }}>
         <Toolbar>
-          <Avatar alt="Logo" src="/assets/dnd-icon-13.jpg" sx={{ width: 80, height: 80 }} />
+          <Link to="/">
+            <Avatar alt="Logo" src="/assets/dnd-icon-13.jpg" sx={{ width: 80, height: 80 }} />
+          </Link>
           <Grid className={classes.head} container direction={'row'}>
             <ButtonGroup color="secondary" variant="contained" aria-label="outlined primary button group">
               <Grid item>
@@ -25,12 +27,12 @@ const Header: React.FC = () => {
                 </Link>
               </Grid>
               <Grid item>
-                <Link to="/init">
+                <Link to="/initiative-tracker">
                   <Button>Initiative Tracker</Button>
                 </Link>
               </Grid>
               <Grid item>
-                <Link to="/rep">
+                <Link to="/reputation-tracker">
                   <Button>Reputation Tracker</Button>
                 </Link>
               </Grid>

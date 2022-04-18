@@ -8,8 +8,8 @@ const AppRouter: React.FC = () => {
   return (
     <Routes>
         <Route path='/' element={<HomePage />}/>
-        <Route path="init" element={<InitiativePage />} />
-        <Route path="rep" element={<ReputationPage />} />
+        <Route path="initiative-tracker" element={<InitiativePage />} />
+        <Route path="reputation-tracker" element={<ReputationPage />} />
     </Routes>
   );
 };
