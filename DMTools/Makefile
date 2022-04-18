@@ -10,7 +10,7 @@
 export $(shell sed 's/=.*//' .env)
 
 .DEFAULT : help
-.PHONY : setup close clean build-backend run-backend build-web run-web database app api install test cypress lint lint-fix format format-fix help
+.PHONY : setup close clean build-db run-db build-api run-api build-app run-app build-all run-all install test-db test-api test-app test-all help
 
 ## ------------------------------------------------------------------------------
 ## - Alias Commands
@@ -115,7 +115,6 @@ run-all: ## Runs all backend+web containers
 	@echo "Make: run-web - running web images"
 	@echo "==============================================="
 	@docker-compose -f docker-compose.yml up -d db api app
-	@docker-compose restart n8n
 
 ## ------------------------------------------------------------------------------
 ## - Run `npm` commands for projects
