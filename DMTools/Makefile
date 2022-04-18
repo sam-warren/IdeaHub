@@ -147,7 +147,7 @@ api: # Builds and runs the API project
 
 db: # Builds and runs the DB project 
 	@echo "==============================================="
-	@echo "Make: api - building and running DB image"
+	@echo "Make: db - building and running DB image"
 	@echo "==============================================="
 	@docker-compose -f docker-compose.yml build db
 	@docker-compose -f docker-compose.yml up -d db
@@ -159,7 +159,7 @@ db: # Builds and runs the DB project
 
 all: # Builds and runs all projects
 	@echo "==============================================="
-	@echo "Make: api - building and running all images"
+	@echo "Make: all - building and running all images"
 	@echo "==============================================="
 	@docker-compose -f docker-compose.yml build db api app
 	@docker-compose -f docker-compose.yml up -d db api app
