@@ -27,7 +27,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "export PORT=8000 && react-scripts start",
+    "start": "export PORT=8000 && node ./utils/HotReloadSetup && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "lint": "eslint . --ext .js",

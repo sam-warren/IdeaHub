@@ -1,6 +1,3 @@
-[submodule "DMTools/--path"]
-	path = DMTools/--path
-	url = https://github.com/sam-warren/DMToolsAPI.git
 [submodule "DMTools/api"]
 	path = DMTools/api
 	url = https://github.com/sam-warren/DMToolsAPI.git

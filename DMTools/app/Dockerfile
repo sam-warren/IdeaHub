@@ -29,4 +29,4 @@ RUN npm run build
 EXPOSE 8080
 
 # RUN APP
-CMD ["npm", "start"]
+CMD ["npm", "run", "start"]

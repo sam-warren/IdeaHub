@@ -27,12 +27,13 @@ services:
       API_HOST: ${API_HOST}
       API_PORT: ${API_PORT}
       API_TZ: ${API_TZ}
+      CHOKIDAR_USEPOLLING: "true"
     build: ./api
     ports:
       - '${API_PORT}:${API_PORT}'
     volumes:
     - ./api:/opt/app-root/src
-    - /opt/app-root/src/node_modules # prevents local node_modules overriding container node_modules
+    - ignore:/opt/app-root/src/node_modules # prevents local node_modules overriding container node_modules
     networks:
       - local-network
     depends_on:
@@ -45,16 +46,17 @@ services:
     ports:
       - '${APP_PORT}:${APP_PORT}'
     environment:
-      - NODE_ENV=${NODE_ENV}
-      - REACT_APP_NODE_ENV=${NODE_ENV}
-      - PORT=${APP_PORT}
-      - REACT_APP_API_HOST=http://${API_HOST}
-      - REACT_APP_API_PORT=${API_PORT}
-      - REACT_APP_MAX_UPLOAD_NUM_FILES=${MAX_UPLOAD_NUM_FILES}
-      - REACT_APP_MAX_UPLOAD_FILE_SIZE=${MAX_UPLOAD_FILE_SIZE}
+      NODE_ENV: ${NODE_ENV}
+      REACT_APP_NODE_ENV: ${NODE_ENV}
+      PORT: ${APP_PORT}
+      REACT_APP_API_HOST: http://${API_HOST}
+      REACT_APP_API_PORT: ${API_PORT}
+      REACT_APP_MAX_UPLOAD_NUM_FILES: ${MAX_UPLOAD_NUM_FILES}
+      REACT_APP_MAX_UPLOAD_FILE_SIZE: ${MAX_UPLOAD_FILE_SIZE}
+      CHOKIDAR_USEPOLLING: "true"
     volumes:
       - ./app:/opt/app-root/src
-      - /opt/app-root/src/node_modules # prevents local node_modules overriding container node_modules
+      - ignore:/opt/app-root/src/node_modules # prevents local node_modules overriding container node_modules
     networks:
       - local-network
     depends_on:
@@ -63,3 +65,6 @@ services:
 networks:
   local-network:
     driver: bridge
+
+volumes:
+  ignore:

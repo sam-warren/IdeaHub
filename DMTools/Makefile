@@ -117,6 +117,54 @@ run-all: ## Runs all backend+web containers
 	@docker-compose -f docker-compose.yml up -d db api app
 
 ## ------------------------------------------------------------------------------
+## - Build/Run App
+## - Builds and runs the App project (app)
+## ------------------------------------------------------------------------------
+
+app: # Builds and runs the App project 
+	@echo "==============================================="
+	@echo "Make: app - building and running app image"
+	@echo "==============================================="
+	@docker-compose -f docker-compose.yml build app
+	@docker-compose -f docker-compose.yml up -d app
+
+## ------------------------------------------------------------------------------
+## - Build/Run API
+## - Builds and runs the API project (api)
+## ------------------------------------------------------------------------------
+
+api: # Builds and runs the API project 
+	@echo "==============================================="
+	@echo "Make: api - building and running API image"
+	@echo "==============================================="
+	@docker-compose -f docker-compose.yml build api
+	@docker-compose -f docker-compose.yml up -d api
+
+## ------------------------------------------------------------------------------
+## - Build/Run DB
+## - Builds and runs the DB project (db)
+## ------------------------------------------------------------------------------
+
+db: # Builds and runs the DB project 
+	@echo "==============================================="
+	@echo "Make: api - building and running DB image"
+	@echo "==============================================="
+	@docker-compose -f docker-compose.yml build db
+	@docker-compose -f docker-compose.yml up -d db
+
+## ------------------------------------------------------------------------------
+## - Build/Run All
+## - Builds and runs all projects (api, db, app)
+## ------------------------------------------------------------------------------
+
+all: # Builds and runs all projects
+	@echo "==============================================="
+	@echo "Make: api - building and running all images"
+	@echo "==============================================="
+	@docker-compose -f docker-compose.yml build db api app
+	@docker-compose -f docker-compose.yml up -d db api app
+
+## ------------------------------------------------------------------------------
 ## - Run `npm` commands for projects
 ## ------------------------------------------------------------------------------
 
