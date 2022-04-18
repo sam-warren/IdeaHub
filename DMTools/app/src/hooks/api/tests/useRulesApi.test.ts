@@ -1,8 +1,8 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import { Rule } from '../../constants/Rule';
-import { RuleSection } from '../../constants/RuleSection';
-import useRulesApi from './useRulesApi';
+import { Rule } from '../../../constants/Rule';
+import { RuleSection } from '../../../constants/RuleSection';
+import useRulesApi from '../useRulesApi';
 
 describe('useRulesApi', () => {
   let mock: MockAdapter;

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import { MagicSchool } from '../../constants/MagicSchool';
-import useSpellsApi from './useSpellsApi';
+import { MagicSchool } from '../../../constants/MagicSchool';
+import useSpellsApi from '../useSpellsApi';
 
 describe('useSpellsApi', () => {
   let mock: MockAdapter;

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import useFeatsApi from './useFeatsApi';
+import useFeatsApi from '../useFeatsApi';
 
 describe('useFeatsApi', () => {
   let mock: MockAdapter;

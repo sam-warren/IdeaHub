@@ -1,7 +1,7 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import { WeaponProperty } from '../../constants/WeaponProperty';
-import useEquipmentApi from './useEquipmentApi';
+import { WeaponProperty } from '../../../constants/WeaponProperty';
+import useEquipmentApi from '../useEquipmentApi';
 
 describe('useEquipmentApi', () => {
   let mock: MockAdapter;

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import useClassApi from './useClassApi';
+import useClassApi from '../useClassApi';
 
 describe('useClassApi', () => {
   let mock: MockAdapter;
