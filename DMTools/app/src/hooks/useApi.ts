@@ -19,7 +19,13 @@ import useTraitsApi from './api/useTraitsApi';
  * @return {*} object whose properties are supported api methods.
  */
 export const useApi = () => {
-  const apiAxios = useAxios(process.env.REACT_APP_API_HOST);
+  const API_URL = process.env.REACT_APP_API_PORT
+    ? `${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}`
+    : process.env.REACT_APP_API_HOST;
+
+  console.log('process.env: ', process.env);
+
+  const apiAxios = useAxios(API_URL);
 
   const characterDataService = useCharacterDataApi(apiAxios);
 
