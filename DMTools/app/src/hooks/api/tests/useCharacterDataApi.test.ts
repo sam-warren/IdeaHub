@@ -1,11 +1,11 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import { AbilityScore } from '../../constants/AbilityScore';
-import { Alignment } from '../../constants/Alignment';
-import { Background } from '../../constants/Background';
-import { Language } from '../../constants/Language';
-import { Skill } from '../../constants/Skill';
-import useCharacterDataApi from './useCharacterDataApi';
+import { AbilityScore } from '../../../constants/AbilityScore';
+import { Alignment } from '../../../constants/Alignment';
+import { Background } from '../../../constants/Background';
+import { Language } from '../../../constants/Language';
+import { Skill } from '../../../constants/Skill';
+import useCharacterDataApi from '../useCharacterDataApi';
 
 describe('useCharacterDataApi', () => {
   let mock: MockAdapter;
