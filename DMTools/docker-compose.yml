@@ -8,11 +8,16 @@ services:
       - "${DB_PORT}:${DB_PORT}"
     environment:
       DB_PORT: ${DB_PORT}
+    networks:
+      - local-network
 
   cache:
+    container_name: ${DOCKER_PROJECT_NAME}-cache-${DOCKER_NAMESPACE}-container
     image: redis:6.2.5
     ports:
       - "${CACHE_PORT}:${CACHE_PORT}"
+    networks:
+    - local-network
 
   api:
     container_name: ${DOCKER_PROJECT_NAME}-api-${DOCKER_NAMESPACE}-container
@@ -50,6 +55,8 @@ services:
     volumes:
       - ./app:/opt/app-root/src
       - /opt/app-root/src/node_modules # prevents local node_modules overriding container node_modules
+    networks:
+      - local-network
     depends_on:
       - api
 
