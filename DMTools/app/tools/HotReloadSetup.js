@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'local') 
     if (webPackConfigFileText.includes('performance: false,')) {
       webPackConfigFileText = webPackConfigFileText.replace(
         'performance: false,',
-        "performance: false,\n\t\twatchOptions: { aggregateTimeout: 200, poll: 500, ignored: '**/node_modules', },"
+        "performance: false,\n\t\twatchOptions: { aggregateTimeout: 100, poll: 100, ignored: '**/node_modules', },"
       );
       fs.writeFileSync(webPackConfigFile, webPackConfigFileText, 'utf8');
     } else {

@@ -1,6 +1,6 @@
 # DMTools
 
-A project to facilitate great Dungeons and Dragons. Complies with SRD.
+A project to facilitate great Dungeons & Dragons. Complies with SRD.
 
 ## Requirements
 
@@ -31,6 +31,7 @@ In the DMTools directory:
 - Database logs: `make log-db`
 - API logs: `make log-api`
 - App logs: `make log-app`
+- All logs: `make log-all`
 
 ## Testing
 

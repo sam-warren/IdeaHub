@@ -121,48 +121,28 @@ run-all: ## Runs all backend+web containers
 ## - Builds and runs the App project (app)
 ## ------------------------------------------------------------------------------
 
-app: # Builds and runs the App project 
-	@echo "==============================================="
-	@echo "Make: app - building and running app image"
-	@echo "==============================================="
-	@docker-compose -f docker-compose.yml build app
-	@docker-compose -f docker-compose.yml up -d app
+app: | build-app run-app # Builds and runs the App project 
 
 ## ------------------------------------------------------------------------------
 ## - Build/Run API
 ## - Builds and runs the API project (api)
 ## ------------------------------------------------------------------------------
 
-api: # Builds and runs the API project 
-	@echo "==============================================="
-	@echo "Make: api - building and running API image"
-	@echo "==============================================="
-	@docker-compose -f docker-compose.yml build api
-	@docker-compose -f docker-compose.yml up -d api
+api: | build-api run-api # Builds and runs the API project 
 
 ## ------------------------------------------------------------------------------
 ## - Build/Run DB
 ## - Builds and runs the DB project (db)
 ## ------------------------------------------------------------------------------
 
-db: # Builds and runs the DB project 
-	@echo "==============================================="
-	@echo "Make: db - building and running DB image"
-	@echo "==============================================="
-	@docker-compose -f docker-compose.yml build db
-	@docker-compose -f docker-compose.yml up -d db
+db: | build-db run-db # Builds and runs the DB project 
 
 ## ------------------------------------------------------------------------------
 ## - Build/Run All
 ## - Builds and runs all projects (api, db, app)
 ## ------------------------------------------------------------------------------
 
-all: # Builds and runs all projects
-	@echo "==============================================="
-	@echo "Make: all - building and running all images"
-	@echo "==============================================="
-	@docker-compose -f docker-compose.yml build db api app
-	@docker-compose -f docker-compose.yml up -d db api app
+all: | app api db # Builds and runs all projects
 
 ## ------------------------------------------------------------------------------
 ## - Run `npm` commands for projects
@@ -200,21 +180,7 @@ test-app: ## Runs `npm test` for the app project
 	@echo "==============================================="
 	@cd app && npm test && cd ..
 
-test-all: ## Runs `npm test` for api, and app projects
-	@echo "==============================================="
-	@echo "Running /db tests"
-	@echo "==============================================="
-	@cd db && npm test && cd ..
-	@echo "==============================================="
-	@echo "Running /app tests"
-	@echo "==============================================="
-	@cd app && npm test && cd ..
-	@echo "==============================================="
-	@echo "Running /api tests"
-	@echo "==============================================="
-	@cd api && npm test && cd ..
-
-
+test-all: | test-db test-api test-app ## Runs `npm test` for api, and app projects
 
 ## ------------------------------------------------------------------------------
 ## - Run `docker logs <container> -f` commands for all projects
@@ -238,6 +204,12 @@ log-db: ## Runs `docker logs <container> -f` for the database container
 	@echo "Running docker logs for the db container"
 	@echo "==============================================="
 	@docker logs $(DOCKER_PROJECT_NAME)-db-$(DOCKER_NAMESPACE)-container -f $(args)
+
+log-all: # Runs `docker logs <container> -f` for all containers
+	@echo "==============================================="
+	@echo "Running docker logs for all containers"
+	@echo "==============================================="
+	@docker-compose logs --tail 0 --follow
 
 ## ------------------------------------------------------------------------------
 ## - Help
