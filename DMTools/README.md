@@ -5,13 +5,17 @@ A project to facilitate great Dungeons & Dragons. Complies with SRD.
 ## Requirements
 
 - [Node v16.14.2](https://nodejs.org/en/download/)
+- [Docker](https://docs.docker.com/get-docker/)
+- [Chocolatey](https://chocolatey.org/) , note: comes with node if selected during install
+- make, cmake, `choco install make cmake`
 
 ## Setup
 
 1. Clone or fork the repository from [GitHub](https://github.com/sam-warren/IdeaHub) and `cd DMTools`
 2. Set up any environment variables in `env_config/env.docker`
 3. In the DMTools directory, `make setup`
-4. Install `node_modules` for all projects using `make install`
+4. Update submodule repos, `git submodule update --init --recursive`
+5. Install `node_modules` for all projects using `make install`
 
 ## Running the project
 

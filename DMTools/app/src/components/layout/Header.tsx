@@ -1,4 +1,4 @@
-import { AppBar, Avatar, Button, ButtonGroup, Grid, Theme, Toolbar } from '@mui/material';
+import { AppBar, Avatar, Box, Theme, Toolbar } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -13,34 +13,18 @@ const Header: React.FC = () => {
   const classes = useStyles();
 
   return (
-    <>
+    <Box className={classes.head}>
       <AppBar position="sticky" style={{ boxShadow: 'inherit' }}>
-        <Toolbar>
+        <Toolbar variant="dense" role="navigation" >
           <Link to="/">
             <Avatar alt="Logo" src="/assets/dnd-icon-13.jpg" sx={{ width: 80, height: 80 }} />
           </Link>
-          <Grid className={classes.head} container direction={'row'}>
-            <ButtonGroup color="secondary" variant="contained" aria-label="outlined primary button group">
-              <Grid item>
-                <Link to="/">
-                  <Button>Home</Button>
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link to="/initiative-tracker">
-                  <Button>Initiative Tracker</Button>
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link to="/reputation-tracker">
-                  <Button>Reputation Tracker</Button>
-                </Link>
-              </Grid>
-            </ButtonGroup>
-          </Grid>
+          <Link to="/">Home</Link>
+          <Link to="/initiative-tracker">Initiative Tracker</Link>
+          <Link to="/reputation-tracker">Reputation Tracker</Link>
         </Toolbar>
       </AppBar>
-    </>
+    </Box>
   );
 };
 
