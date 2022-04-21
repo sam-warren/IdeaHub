@@ -21,7 +21,12 @@ const Footer: React.FC = () => {
           justifyContent: 'flex-start'
         }}>
         <Box mr={2}>track this project on </Box>
-        <IconButton edge="start" color="inherit" aria-label="menu">
+        <IconButton
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+          href="https://github.com/sam-warren/IdeaHub/tree/main/DMTools"
+          target="_blank">
           <GitHubIcon style={{ color: '#fff' }} />
         </IconButton>
       </Toolbar>
