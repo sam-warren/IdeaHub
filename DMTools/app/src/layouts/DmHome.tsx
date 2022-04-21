@@ -14,7 +14,9 @@ const DmHome: React.FC = (props) => {
           })}
         </Box>
       </Container>
-      <Footer />
+      <Box position="fixed" bottom="0px" left="0" right="0">
+        <Footer />
+      </Box>
     </Box>
   );
 };

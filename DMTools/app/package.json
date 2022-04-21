@@ -5,8 +5,10 @@
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
-    "@mui/material": "^5.5.3",
-    "@mui/styles": "^5.6.1",
+    "@mui/core": "^5.0.0-alpha.54",
+    "@mui/icons-material": "^5.6.2",
+    "@mui/material": "^5.6.2",
+    "@mui/styles": "^5.6.2",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
@@ -28,6 +30,7 @@
   },
   "scripts": {
     "start": "export PORT=8000 && node ./tools/HotReloadSetup && react-scripts start",
+    "start-dev": "export PORT=8000 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "lint": "eslint . --ext .js",
