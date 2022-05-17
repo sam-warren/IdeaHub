@@ -10,7 +10,7 @@
 export $(shell sed 's/=.*//' .env)
 
 .DEFAULT : help
-.PHONY : setup close clean build-db run-db build-api run-api build-app run-app build-all run-all install test-db test-api test-app test-all help
+.PHONY : setup close clean build-app run-app build-all run-all install test-app test-all help
 
 ## ------------------------------------------------------------------------------
 ## - Alias Commands
@@ -23,8 +23,6 @@ export $(shell sed 's/=.*//' .env)
 # 3. Run `make web`
 
 env: | setup ## Copies the default ./env_config/env.docker to ./.env
-backend: | close build-backend run-backend ## Performs all commands necessary to run all backend projects (db, api) in docker
-web: | close build-web run-web ## Performs all commands necessary to run all backend+web projects (db, api, app) in docker
 
 ## ------------------------------------------------------------------------------
 ## - Setup/Cleanup Commands
@@ -49,40 +47,6 @@ clean: ## Closes and cleans (removes) all project containers
 	@docker-compose -f docker-compose.yml down -v --rmi all --remove-orphans
 
 ## ------------------------------------------------------------------------------
-## - Build/Run DB Commands
-## - Builds the DMTools db project (db)
-## ------------------------------------------------------------------------------
-
-build-db: ## Builds the db container
-	@echo "==============================================="
-	@echo "Make: build-db - building db images"
-	@echo "==============================================="
-	@docker-compose -f docker-compose.yml build db
-
-run-db: ## Runs the db container
-	@echo "==============================================="
-	@echo "Make: run-db - running db images"
-	@echo "==============================================="
-	@docker-compose -f docker-compose.yml up -d db
-
-## ------------------------------------------------------------------------------
-## - Build/Run API Commands
-## - Builds the DMTools API project (api)
-## ------------------------------------------------------------------------------
-
-build-api: ## Builds the api container
-	@echo "==============================================="
-	@echo "Make: build-api - building api image"
-	@echo "==============================================="
-	@docker-compose -f docker-compose.yml build api
-
-run-api: ## Runs the api container
-	@echo "==============================================="
-	@echo "Make: run-api - running api image"
-	@echo "==============================================="
-	@docker-compose -f docker-compose.yml up -d api
-
-## ------------------------------------------------------------------------------
 ## - Build/Run App Commands
 ## - Builds the DMTools App project (app)
 ## ------------------------------------------------------------------------------
@@ -101,20 +65,20 @@ run-app: ## Runs the app container
 
 ## ------------------------------------------------------------------------------
 ## - Build/Run Backend+Web Commands (backend + web frontend)
-## - Builds all of the DMTools backend+web projects (db, api, app)
+## - Builds all of the DMTools backend+web projects (app)
 ## ------------------------------------------------------------------------------
 
 build-all: ## Builds all backend+web containers
 	@echo "==============================================="
 	@echo "Make: build-web - building web images"
 	@echo "==============================================="
-	@docker-compose -f docker-compose.yml build db api app
+	@docker-compose -f docker-compose.yml build app
 
 run-all: ## Runs all backend+web containers
 	@echo "==============================================="
 	@echo "Make: run-web - running web images"
 	@echo "==============================================="
-	@docker-compose -f docker-compose.yml up -d db api app
+	@docker-compose -f docker-compose.yml up -d app
 
 ## ------------------------------------------------------------------------------
 ## - Build/Run App
@@ -124,25 +88,11 @@ run-all: ## Runs all backend+web containers
 app: | build-app run-app # Builds and runs the App project 
 
 ## ------------------------------------------------------------------------------
-## - Build/Run API
-## - Builds and runs the API project (api)
-## ------------------------------------------------------------------------------
-
-api: | build-api run-api # Builds and runs the API project 
-
-## ------------------------------------------------------------------------------
-## - Build/Run DB
-## - Builds and runs the DB project (db)
-## ------------------------------------------------------------------------------
-
-db: | build-db run-db # Builds and runs the DB project 
-
-## ------------------------------------------------------------------------------
 ## - Build/Run All
-## - Builds and runs all projects (api, db, app)
+## - Builds and runs all projects (app)
 ## ------------------------------------------------------------------------------
 
-all: | app api db # Builds and runs all projects
+all: | app # Builds and runs all projects
 
 ## ------------------------------------------------------------------------------
 ## - Run `npm` commands for projects
@@ -150,29 +100,9 @@ all: | app api db # Builds and runs all projects
 
 install: ## Runs `npm install` for all projects
 	@echo "==============================================="
-	@echo "Running /api install"
-	@echo "==============================================="
-	@cd api && npm install && cd ..
-	@echo "==============================================="
 	@echo "Running /app install"
 	@echo "==============================================="
 	@cd app && npm install && cd ..
-	@echo "==============================================="
-	@echo "Running /db install"
-	@echo "==============================================="
-	@cd db && npm install && cd ..
-
-test-db: ## Runs `npm test` for the db project
-	@echo "==============================================="
-	@echo "Running /db test"
-	@echo "==============================================="
-	@cd db && npm test && cd ..
-
-test-api: ## Runs `npm test` for the api project
-	@echo "==============================================="
-	@echo "Running /api test"
-	@echo "==============================================="
-	@cd api && npm test && cd ..
 
 test-app: ## Runs `npm test` for the app project
 	@echo "==============================================="
@@ -180,7 +110,7 @@ test-app: ## Runs `npm test` for the app project
 	@echo "==============================================="
 	@cd app && npm test && cd ..
 
-test-all: | test-db test-api test-app ## Runs `npm test` for api, and app projects
+test-all: | test-app ## Runs `npm test` for app project
 
 ## ------------------------------------------------------------------------------
 ## - Run `docker logs <container> -f` commands for all projects
@@ -192,18 +122,6 @@ log-app: ## Runs `docker logs <container> -f` for the app container
 	@echo "Running docker logs for the app container"
 	@echo "==============================================="
 	@docker logs $(DOCKER_PROJECT_NAME)-app-$(DOCKER_NAMESPACE)-container -f $(args)
-
-log-api: ## Runs `docker logs <container> -f` for the api container
-	@echo "==============================================="
-	@echo "Running docker logs for the api container"
-	@echo "==============================================="
-	@docker logs $(DOCKER_PROJECT_NAME)-api-$(DOCKER_NAMESPACE)-container -f $(args)
-
-log-db: ## Runs `docker logs <container> -f` for the database container
-	@echo "==============================================="
-	@echo "Running docker logs for the db container"
-	@echo "==============================================="
-	@docker logs $(DOCKER_PROJECT_NAME)-db-$(DOCKER_NAMESPACE)-container -f $(args)
 
 log-all: # Runs `docker logs <container> -f` for all containers
 	@echo "==============================================="
